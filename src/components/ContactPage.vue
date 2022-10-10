@@ -17,7 +17,9 @@
       class="pb-5 shadow-md mx-8.35 rounded-2xl dark:bg-[#222330] lg:mt-[-100px] md:mt-[-80px] sm:mt-[-80px] mobile:mt-[0px]"
     >
       <div
-        class="flex w-full lg:flex-row md:flex-row sm:flex-col sm:gap-5 mobile:flex-col mobile:gap-5 lg:px-20 lg:py-16 md:px-5 md:py-5 sm:px-5 sm:py-5 mobile:px-2 mobile:py-2 bg-white rounded-2xl dark:bg-[#222330]"
+        class="flex w-full lg:flex-row md:flex-row sm:flex-col sm:gap-5 
+        mobile:flex-col mobile:gap-5 
+        lg:px-20 lg:py-16 md:px-5 md:py-5 sm:px-5 sm:py-5 mobile:px-2 mobile:py-2 bg-white rounded-2xl dark:bg-[#222330]"
       >
         <!-- contact intro -->
         <div
@@ -40,7 +42,7 @@
         </div>
         <!-- contact form -->
         <div
-          class="contact__form basis-1/3 flex flex-col gap-5 justify-end lg:px-2 md:px-2 sm:px-0 mobile:px-0"
+          class="contact__form basis-1/3 flex flex-col gap-5 w-full justify-end lg:px-2 md:px-2 sm:px-auto mobile:px-auto"
         >
           <p
             class="font-roboto text-[#11152A] dark:text-gray-300 leading-[30px] text-[15px] lg:text-[15px] md:text-sm sm:text-sm"
@@ -62,15 +64,17 @@
               type="text"
               name="Company Name"
               placeholder="Company Name"
+              class="text__input"
               style="outline: none; border-radius: 6px; padding: 0 6px 0 6px"
               validation="required|alpha|length:3,30"
               validation-visibility="blur"
               :classes="{
                 outer: 'mb-5',
-                inner:
-                  'boder-solid border-[1px] border-gray-700 dark:border-gray-500 rounded-[6px]',
+                inner: '$reset outline-none',
                 input:
-                  'bg-white dark:bg-[#191A23] text-gray-700 dark:text-white font-roboto h-[35px] w-full',
+                  '$reset input__text bg-white dark:bg-[#191A23] text-gray-700 dark:text-white font-roboto h-[35px] w-full'
+                  + '$reset focus:border-[#5a27ed] focus:border-[1px] focus:border-solid'
+                  + '$reset border-[1px] border-solid w-full',
                 message: 'font-roboto text-[red] text-sm',
               }"
             />
@@ -79,15 +83,17 @@
               type="text"
               placeholder="Email"
               name="Email"
+              class="text__input"
               style="outline: none; border-radius: 6px; padding: 0 6px 0 6px"
               validation-visibility="blur"
               validation="required|email"
               :classes="{
                 outer: 'mb-5',
-                inner:
-                  'boder-solid border-[1px] border-gray-700 dark:border-gray-500 rounded-[6px]',
+                inner: '$reset outline-none',
                 input:
-                  'bg-white dark:bg-[#191A23] text-gray-700 dark:text-white font-roboto h-[35px] w-full',
+                  '$reset input__text bg-white dark:bg-[#191A23] text-gray-700 dark:text-white font-roboto h-[35px] w-full'
+                  + '$reset focus:border-[#5a27ed] focus:border-[1px] focus:border-solid'
+                  + '$reset border-[1px] border-solid w-full',
               }"
             />
 
@@ -99,15 +105,17 @@
                 type="text"
                 placeholder="First Name"
                 name="First Name"
+                class="text__input"
                 style="outline: none; border-radius: 6px; padding: 0 6px 0 6px"
                 validation-visibility="blur"
                 validation="required|alpha|length:2,30"
                 :classes="{
                   outer: 'mb-5',
-                  inner:
-                    'boder-solid border-[1px] border-gray-700 dark:border-gray-500 rounded-[6px]',
+                  inner: '$reset outline-none',
                   input:
-                    'bg-white dark:bg-[#191A23] text-gray-700 dark:text-white font-roboto h-[35px] w-full',
+                    '$reset input__text bg-white dark:bg-[#191A23] text-gray-700 dark:text-white font-roboto h-[35px] w-full'
+                    + '$reset focus:border-[#5a27ed] focus:border-[1px] focus:border-solid'
+                    + '$reset border-[1px] border-solid w-full',
                 }"
               />
               <!-- Last Name -->
@@ -120,11 +128,11 @@
                 validation="required|alpha|length:2,30"
                 :classes="{
                   outer: 'mb-5',
-                  inner:
-                    'boder-solid border-[1px] border-gray-700 dark:border-gray-500 rounded-[6px] ' +
-                    'hover:border-[#5A27ED] hover:border-solid focus:hover-[1px] hover:rounded-lg',
+                  inner: '$reset outline-none',
                   input:
-                    'w-full bg-white dark:bg-[#191A23] text-gray-700 dark:text-white font-roboto h-[35px]',
+                    '$reset input__text bg-white dark:bg-[#191A23] text-gray-700 dark:text-white font-roboto h-[35px] w-full'
+                    + '$reset focus:border-[#5a27ed] focus:border-[1px] focus:border-solid'
+                    + '$reset border-[1px] border-solid w-full',
                 }"
               />
             </div>
@@ -134,8 +142,9 @@
               label="Send"
               :classes="{
                 outer: 'mb-0',
+                inner: 'hover:bg-[#5A27ED]',
                 input:
-                  'bg-blue-500 text-white font-bold py-2 px-10 rounded-md w-full',
+                  '$reset w-full bg-[#5a27ed] h-[35px] rounded-lg text-white',
               }"
             />
           </FormKit>
@@ -181,4 +190,9 @@ var showMode = computed(() => store.getters["showMode"]);
   left: 50%;
   transform: translate(-50%, 50%);
 }
+.input__text:focus {
+  border: solid 1px #5A27ED;
+  border-radius: 6px;
+}
+
 </style>

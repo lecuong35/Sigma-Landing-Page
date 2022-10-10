@@ -62,108 +62,134 @@
               ></button>
             </div>
             <div class="modal-body relative p-4 mt-5">
-              <!-- <FormKit type="input" validation="required|alpha|min:5" label="hello ba'sbe"/> -->
-              <div
-                class="popup__input flex lg:flex-row md:flex-row sm:flex-col mobile:flex-col"
+              <FormKit 
+                type="form"
+                :actions="false"
+                :form-class="'flex gap-[25px] lg:flex-row md:flex-row sm:flex-col mobile:flex-col'"
+                :config="{
+                  classes: {
+                    outer: '$reset popup__input flex lg:flex-row md:flex-row sm:flex-col mobile:flex-col',
+                    messages: '$reset font-roboto text-sm text-[red]',
+                  }
+                }"
               >
-                <div
-                  class="input1 basis-1/2 mobile:pr-0 sm:pr-0 lg:pr-[10px] md:pr-[10px]"
+              <!-- input 1 -->
+                <div 
+                  class="input1 basis-1/2"
                 >
-                  <div class="firstname flex flex-col mb-6">
-                    <label
-                      for="first__name"
-                      class="inline-flex text-[16px] font-roboto"
-                    >
-                      First Name
-                      <p style="color: red" class="ml-1">*</p>
-                    </label>
-                    <input
-                      type="text"
-                      id="first__name"
-                      class="border-solid border-[1px] outline-none focus:border-[1px] focus:border-[#5A27ED] focus:border-solid rounded-lg pl-2 mt-[6px] h-[36px] w-[100%]"
-                    />
-                  </div>
-                  <div class="lastname flex flex-col mb-6">
-                    <label
-                      for="last__name"
-                      class="inline-flex text-[16px] font-roboto"
-                      >Last Name
-                      <p style="color: red" class="ml-1">*</p></label
-                    >
-                    <input
-                      type="text"
-                      id="last__name"
-                      class="border-solid border-[1px] outline-none focus:border-[1px] focus:border-[#5A27ED] focus:border-solid rounded-lg pl-2 mt-[6px] h-[36px] w-[100%]"
-                    />
-                  </div>
-                  <div class="company flex flex-col mb-6">
-                    <label
-                      for="company__input"
-                      class="inline-flex text-[16px] font-roboto"
-                      >Company
-                      <p style="color: red" class="ml-1">*</p></label
-                    >
-                    <input
-                      type="text"
-                      id="company__input"
-                      class="border-solid border-[1px] outline-none focus:border-[1px] focus:border-[#5A27ED] focus:border-solid rounded-lg pl-2 mt-[6px] h-[36px] w-[100%]"
-                    />
-                  </div>
+                  <FormKit 
+                    type="text"
+                    label="First Name"
+                    name="First Name"
+                    validation="required|alpha|length:2,30"
+                    style="outline:none"
+                    :classes="{
+                      label: '$reset font-roboto font-bold',
+                      outer: '$reset firstname flex flex-col mb-6',
+                      inner: '$reset outline-none',
+                      input: 
+                      '$reset border-solid border-[1px] border-gray-500 font-roboto'
+                      + '$reset focus:border-[1px] focus:border-[#5A27ED] focus:border-solid'
+                      + '$reset rounded-lg pl-2 mt-[6px] h-[36px] w-[100%]',
+                    }"
+                  />
+                  <FormKit 
+                    type="text"
+                    label="Last Name"
+                    name="Last Name"
+                    validation="required|alpha|length:2,30"
+                    style="outline:none"
+                    :classes="{
+                      label: '$reset font-roboto font-bold',
+                      outer: '$reset firstname flex flex-col mb-6',
+                      inner: '$reset outline-none',
+                      input: 
+                      '$reset border-solid border-[1px] border-gray-500 font-roboto'
+                      + '$reset focus:border-[1px] focus:border-[#5A27ED] focus:border-solid'
+                      + '$reset rounded-lg pl-2 mt-[6px] h-[36px] w-[100%]',
+                    }"
+                  />
+                  <FormKit 
+                    type="text"
+                    label="Company"
+                    name="Company"
+                    validation="required|alpha|length:2,30"
+                    style="outline:none"
+                    :classes="{
+                      label: '$reset font-roboto font-bold',
+                      outer: '$reset firstname flex flex-col mb-6',
+                      inner: '$reset outline-none',
+                      input: 
+                      '$reset border-solid border-[1px] border-gray-500 font-roboto'
+                      + '$reset focus:border-[1px] focus:border-[#5A27ED] focus:border-solid'
+                      + '$reset rounded-lg pl-2 mt-[6px] h-[36px] w-[100%]',
+                    }"
+                  />
+
                 </div>
-                <div
-                  class="input2 basis-1/2 pl-5 mobile:pl-0 sm:pl-0 md:pl-[10px] lg:pl-[10px]"
+
+                <!-- input 2 -->
+                <div 
+                  class="input1 basis-1/2"
                 >
-                  <div class="country flex flex-col mb-6">
-                    <label
-                      for="country__input"
-                      class="inline-flex text-[16px] font-roboto"
-                      >Country
-                      <p style="color: red" class="ml-1">*</p></label
+                <div class="country flex flex-col mb-6">
+                  <label
+                    for="country__input"
+                    class="inline-flex text-[16px] font-roboto"
+                    >Country
+                    <p style="color: red" class="ml-1">*</p></label
+                  >
+                  <select
+                    id="country__input"
+                    class="border-solid border-[1px] outline-none focus:border-[1px] focus:border-[#5A27ED] focus:border-solid rounded-lg pl-2 mt-[6px] h-[36px] w-[100%]"
+                  >
+                    <option selected>Choose your country</option>
+                    <option
+                      v-for="country in countries"
+                      :key="country.flags.png"
+                      :style="{
+                        'background-image': 'url(' + country.flags.png + ')',
+                      }"
                     >
-                    <select
-                      id="country__input"
-                      class="border-solid border-[1px] outline-none focus:border-[1px] focus:border-[#5A27ED] focus:border-solid rounded-lg pl-2 mt-[6px] h-[36px] w-[100%]"
-                    >
-                      <option selected>Choose your country</option>
-                      <option
-                        v-for="country in countries"
-                        :key="country.flags.png"
-                        :style="{
-                          'background-image': 'url(' + country.flags.png + ')',
-                        }"
-                      >
-                        {{ country.name.common }}
-                      </option>
-                    </select>
-                  </div>
-                  <div class="phone flex flex-col mb-6">
-                    <label
-                      for="phone__input"
-                      class="inline-flex text-[16px] font-roboto"
-                      >Phone
-                      <p style="color: red" class="ml-1">*</p></label
-                    >
-                    <input
-                      type="text"
-                      id="phone__input"
-                      class="border-solid border-[1px] outline-none focus:border-[1px] focus:border-[#5A27ED] focus:border-solid rounded-lg pl-2 mt-[6px] h-[36px] w-[100%]"
-                    />
-                  </div>
-                  <div class="email flex flex-col mb-6">
-                    <label
-                      for="email__input"
-                      class="inline-flex text-[16px] font-roboto"
-                      >Email
-                      <p style="color: red" class="ml-1">*</p></label
-                    >
-                    <input
-                      type="text"
-                      id="email__input"
-                      class="border-solid border-[1px] outline-none focus:border-[1px] focus:border-[#5A27ED] focus:border-solid rounded-lg pl-2 mt-[6px] h-[36px] w-[100%]"
-                    />
-                  </div>
+                      {{ country.name.common }}
+                    </option>
+                  </select>
                 </div>
-              </div>
+                  <FormKit 
+                    type="text"
+                    label="Phone"
+                    name="Phone"
+                    validation="required|number|length:10,11"
+                    style="outline:none"
+                    :classes="{
+                      label: '$reset font-roboto font-bold',
+                      outer: '$reset firstname flex flex-col mb-6',
+                      inner: '$reset outline-none',
+                      input: 
+                      '$reset border-solid border-[1px] border-gray-500 font-roboto'
+                      + '$reset focus:border-[1px] focus:border-[#5A27ED] focus:border-solid'
+                      + '$reset rounded-lg pl-2 mt-[6px] h-[36px] w-[100%]',
+                    }"
+                  />
+                  <FormKit 
+                    type="text"
+                    label="Email"
+                    name="Email"
+                    validation="required|email"
+                    style="outline:none"
+                    :classes="{
+                      label: '$reset font-roboto font-bold',
+                      outer: '$reset firstname flex flex-col mb-6',
+                      inner: '$reset outline-none',
+                      input: 
+                      '$reset border-solid border-[1px] border-gray-500 font-roboto'
+                      + '$reset focus:border-[1px] focus:border-[#5A27ED] focus:border-solid'
+                      + '$reset rounded-lg pl-2 mt-[6px] h-[36px] w-[100%]',
+                    }"
+                  />
+
+                </div>
+              </FormKit>
             </div>
             <!-- popup footer -->
             <div
@@ -498,6 +524,7 @@ import { useStore } from "vuex";
 import "tw-elements";
 import { count } from "console";
 import { url } from "inspector";
+import { inputs, label, messages, outer } from "@formkit/inputs";
 const store = useStore();
 var showMode = computed(() => store.getters["showMode"]);
 
